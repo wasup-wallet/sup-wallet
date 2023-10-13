@@ -10,4 +10,5 @@ export enum Configuration {
   DB_USERNAME = 'DB_USERNAME',
   DB_PASSWORD = 'DB_PASSWORD',
   DB_NAME = 'DB_NAME',
+  DB_SSL = 'DB_SSL',
 }

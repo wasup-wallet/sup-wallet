@@ -15,7 +15,7 @@ export const databaseProviders = [
     // Provide the Config Service.
     async useFactory(config: ConfigService) {
       return {
-        ssl: true,
+        ssl: config.get(Configuration.DB_SSL) === 'true',
         type: 'mysql',
         host: config.get(Configuration.DB_HOST),
         port: +config.get(Configuration.DB_PORT),

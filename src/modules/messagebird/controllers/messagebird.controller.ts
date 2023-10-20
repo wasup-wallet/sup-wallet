@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { ethers } from 'ethers';
+import { MessagebirdService } from './../services/messagebird.service';
 
 @Controller('messagebird')
 export class MessagebirdController {
+  constructor(private readonly messagebirdService: MessagebirdService) {}
   /**
    * @memberof MessagebirdController
    * @description Verify if a whatsapp account exists.
@@ -29,11 +32,12 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password:  string,
   ) {
-    return {
-      walletId: '0x1234567890',
-      msg: `The wallet was created for the phone ${phone} with the password ${password}`,
-      status: 'success',
-    };
+    return this.messagebirdService.getHello();
+    // return {
+    //   walletId: '0x1234567890',
+    //   msg: `The wallet was created for the phone ${phone} with the password ${password}`,
+    //   status: 'success',
+    // };
   }
 
   /**

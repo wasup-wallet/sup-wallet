@@ -12,3 +12,14 @@ export enum Configuration {
   DB_NAME = 'DB_NAME',
   DB_SSL = 'DB_SSL',
 }
+
+/**
+ * @description Enum for Blockchain keys
+ * @enum {string}
+ * @readonly
+ */
+export enum Blockchain {
+  PROVIDER_URL = 'PROVIDER_URL',
+  CONTRACT_ADDRESS = 'CONTRACT_ADDRESS',
+  ABI = 'ABI',
+}

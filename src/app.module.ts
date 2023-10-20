@@ -6,9 +6,10 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigService } from './config/config.service';
 import { ConfigModule } from './config/config.module';
 import { Configuration } from './config/config.keys';
+import { MessagebirdModule } from './modules/messagebird/messagebird.module';
 
 @Module({
-  imports: [DatabaseModule, ConfigModule],
+  imports: [DatabaseModule, ConfigModule, MessagebirdModule],
   controllers: [],
   providers: [],
 })

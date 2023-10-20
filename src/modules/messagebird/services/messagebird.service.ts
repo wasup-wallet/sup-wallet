@@ -4,10 +4,7 @@ import { EthersService } from './ethers.service';
 
 @Injectable()
 export class MessagebirdService {
-  constructor(
-    private readonly ethersService: EthersService,
-  ) { }
-  
+  constructor(private readonly ethersService: EthersService) {}
 
   async createWallet() {
     await this.ethersService.getBalance('993059945');
@@ -17,5 +14,4 @@ export class MessagebirdService {
     console.log('=> wallet', wallet);
     return wallet;
   }
-
 }

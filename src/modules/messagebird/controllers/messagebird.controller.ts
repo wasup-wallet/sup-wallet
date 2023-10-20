@@ -1,4 +1,9 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+// Third Party Dependencies
+import { Body, Controller, Post, Res } from '@nestjs/common';
+import { createCanvas } from 'canvas';
+import * as QRCode from 'qrcode';
+
+// Local Dependencies
 import { MessagebirdService } from './../services/messagebird.service';
 import { EthersService } from './../services/ethers.service';
 
@@ -75,9 +80,24 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
+    const canvas = createCanvas(300, 300);
+    const context = canvas.getContext('2d');
+
+    context.fillStyle = '#e9ebee';
+    context.fillRect(0, 0, 300, 300);
+
+    const data = 'https://www.facebook.com/';
+
+    await QRCode.toCanvas(canvas, data, {
+      color: {
+        dark: '#4267b2',
+        light: '#e9ebee',
+      },
+    });
+
     return {
       msg: `The wallet was paid for the phone ${phone} with the password ${password}`,
-      img: 'https://i.ibb.co/Jv6B9Sk/image.png',
+      img: canvas.toDataURL(),
       status: 'success',
     };
   }

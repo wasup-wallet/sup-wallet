@@ -6,6 +6,7 @@ import { ConfigService } from './../../config/config.service';
 // import {} from ''
 
 @Module({
+  imports: [ConfigService],
   controllers: [MessagebirdController],
   providers: [MessagebirdService, EthersService, ConfigService],
 })

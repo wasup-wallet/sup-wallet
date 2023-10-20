@@ -1,9 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { MessagebirdService } from './../services/messagebird.service';
+import { EthersService } from './../services/ethers.service';
 
 @Controller('messagebird')
 export class MessagebirdController {
-  constructor(private readonly messagebirdService: MessagebirdService) {}
+  constructor(
+    private readonly messagebirdService: MessagebirdService
+  ) { }
   /**
    * @memberof MessagebirdController
    * @description Verify if a whatsapp account exists.
@@ -29,7 +32,7 @@ export class MessagebirdController {
   @Post('create-wallet')
   async createWallet(
     @Body('phone') phone: string,
-    @Body('password') password:  string,
+    @Body('password') password: string,
   ) {
     const wallet = await this.messagebirdService.createWallet();
     return {

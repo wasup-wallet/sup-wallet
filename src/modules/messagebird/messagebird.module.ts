@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MessagebirdController } from './controllers/messagebird.controller';
 import { MessagebirdService } from './services/messagebird.service';
+import { EthersService } from './services/ethers.service';
+import { ConfigService } from './../../config/config.service';
+// import {} from ''
 
 @Module({
   controllers: [MessagebirdController],
-  providers: [MessagebirdService],
+  providers: [MessagebirdService, EthersService, ConfigService],
 })
 export class MessagebirdModule {}

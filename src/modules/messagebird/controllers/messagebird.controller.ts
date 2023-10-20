@@ -31,7 +31,7 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password:  string,
   ) {
-    const wallet = this.messagebirdService.createWallet();
+    const wallet = await this.messagebirdService.createWallet();
     return {
       walletId: wallet.address,
       msg: `The wallet was created for the phone ${phone} with the password ${password}`,

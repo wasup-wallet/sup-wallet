@@ -23,3 +23,7 @@ export enum Blockchain {
   CONTRACT_ADDRESS = 'CONTRACT_ADDRESS',
   ABI = 'ABI',
 }
+
+export enum WalletOwner {
+  PRIVATE_KEY = 'PRIVATE_KEY',
+}

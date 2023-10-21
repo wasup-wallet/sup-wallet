@@ -5,7 +5,7 @@ import contractABI from './../../../contracts/contractABI.json';
 
 // Local Dependencies
 import { ConfigService } from 'src/config/config.service';
-import { Blockchain } from 'src/config/config.keys';
+import { Blockchain, WalletOwner } from 'src/config/config.keys';
 
 @Injectable()
 export class EthersService {
@@ -49,16 +49,27 @@ export class EthersService {
   }
 
   async getBalance(phonenumber: string) {
-    // const provider = new ethers.providers.JsonRpcProvider(
-    //   'https://polygon-mumbai.infura.io/v3/d8b554afb90b4e7196f5f8160dcc7fb8',
-    // );
-    // const contract = new ethers.Contract(
-    //   '0x0a07bd1c0cae8335dcb3cbd74f8cac82ffd7b419',
-    //   contractABI,
-    //   provider,
-    // );
     const contract = this.getContract(this.connectToProvider());
     const result = await contract.getBalance(phonenumber);
     console.log('Resultado del método:', result.toString());
+    return result.toString();
+  }
+
+  async createAccount(phonenumber: string, wallet: string) {
+    console.log('=> WalletOwner.PRIVATE_KEY:', this.configService.get(WalletOwner.PRIVATE_KEY));
+    // const provider = this.connectToProvider();
+    // const walletOwner = new ethers.Wallet(this.configService.get(WalletOwner.PRIVATE_KEY));
+    // // create an instance of wallet owner
+    // const signer = walletOwner.connect(provider);
+    // const contract = new ethers.Contract(Blockchain.CONTRACT_ADDRESS, contractABI, signer);
+    // const result = await contract.createAccount(phonenumber, wallet);
+    // console.log("=> createAccount:", result);
+    const tempPrivateKey = '0xe0bced44cc0ae50d2aa5d1cb3864b85cbf0018aed1e275c74e0c7e34cc8be510';
+    const provider = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/d8b554afb90b4e7196f5f8160dcc7fb8');
+    const walletOwner = new ethers.Wallet(tempPrivateKey);
+    const signer = walletOwner.connect(provider);
+    const contract = new ethers.Contract('0x0a07bd1c0cae8335dcb3cbd74f8cac82ffd7b419', contractABI, signer);
+    const result = await contract.createAccount(phonenumber, wallet);
+    console.log("createAccount:", result);
   }
 }

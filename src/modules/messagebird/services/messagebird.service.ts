@@ -6,12 +6,19 @@ import { EthersService } from './ethers.service';
 export class MessagebirdService {
   constructor(private readonly ethersService: EthersService) {}
 
-  async createWallet() {
-    await this.ethersService.getBalance('993059945');
+  async createWallet(phonenumber: string) {
     const wallet = ethers.Wallet.createRandom();
     console.log('Wallet address:', wallet.address);
     console.log('Private Key:', wallet.privateKey);
-    console.log('=> wallet', wallet);
+    await this.ethersService.createAccount(phonenumber, wallet.address);
     return wallet;
+  }
+
+  async getBalance(phonenumber: string) {
+    return await this.ethersService.getBalance(phonenumber);
+  }
+
+  async getAddress(phonenumber: string) {
+    return await this.ethersService.getBalance(phonenumber);
   }
 }

@@ -39,7 +39,7 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
-    const wallet = await this.messagebirdService.createWallet();
+    const wallet = await this.messagebirdService.createWallet(phone);
     return {
       walletId: wallet.address,
       msg: `The wallet was created for the phone ${phone} with the password ${password}`,
@@ -59,9 +59,10 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
+    const balance = await this.messagebirdService.getBalance(phone);
     return {
       msg: `The wallet balance was requested for the phone ${phone} with the password ${password}`,
-      balance: 100,
+      balance,
       currency: 'USDT',
       red: 'ETH',
       status: 'success',
@@ -80,6 +81,7 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
+    const address = await this.messagebirdService.getAddress(phone);
     const canvas = createCanvas(300, 300);
     const context = canvas.getContext('2d');
 

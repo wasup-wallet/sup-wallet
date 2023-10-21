@@ -99,7 +99,7 @@ export class MessagebirdController {
 
     return {
       msg: `The wallet was paid for the phone ${phone} with the password ${password}`,
-      img: canvas.toDataURL(),
+      img: 'https://i.ibb.co/Jv6B9Sk/image.png',
       status: 'success',
     };
   }

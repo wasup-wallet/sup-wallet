@@ -2,7 +2,7 @@
   <a href="#" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="200" alt="WhatsApp Logo" /></a>
 </p>
 
-# Whats'Up Wallet
+# Sup Wallet
 
 A revolutionary way to manage and transact money through WhatsApp by creating digital wallets and facilitating a seamless transaction system via messages.
 

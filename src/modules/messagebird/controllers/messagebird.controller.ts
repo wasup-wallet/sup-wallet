@@ -61,15 +61,41 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
-    const balance = await this.messagebirdService.getBalance(phone);
-    return {
-      msg: `The wallet balance was requested for the phone ${phone}.`,
-      balance,
-      currency: 'USDT',
-      red: 'ETH',
-      status: 'success',
-    };
+    // const balance = await this.messagebirdService.getBalance(phone);
+    const address = 'EPLINETDU5B3F64TQXG44KEXQ24J4EUJWIO4VLQJ2IQEIFEQ6VVBT2MEE4';
+    const balance = await this.messagebirdService.getBalance(address);
+    return balance;
+    // return {
+    //   msg: `The wallet balance was requested for the phone ${phone}.`,
+    //   balance,
+    //   currency: 'USDT',
+    //   red: 'ETH',
+    //   status: 'success',
+    // };
   }
+
+  /**
+   * @memberof MessagebirdController
+   * @description Get the balance of a wallet.
+   * @param {string} phone The phone number to get the balance.
+   * @param {string} password The password to get the balance.
+   * @returns {number} Returns the balance of the wallet.
+   */
+    @Post('send')
+    async sendToken(
+      @Body('phone') phone: string,
+      @Body('password') password: string,
+      @Body('amount') amount: number,
+    ) {
+      // const balance = await this.messagebirdService.getBalance(phone);
+      const from = 'EPLINETDU5B3F64TQXG44KEXQ24J4EUJWIO4VLQJ2IQEIFEQ6VVBT2MEE4';
+      const privateKey = '216,22,78,84,110,216,204,99,248,237,157,183,148,74,171,82,85,65,124,196,41,225,185,100,132,32,126,147,103,199,200,214,35,214,134,146,99,167,67,178,251,147,133,205,206,40,151,134,184,158,18,137,178,29,202,174,9,210,32,68,20,144,245,106';
+      const mnemonic = 'swallow debate clay manage often body hurt over notice clean fiber festival live business evolve thrive now bag aware dawn song crack rent absorb exact';
+      const to = 'A76RRSTWM5YCTBDISI5ZNJP4OKKZR7ZLCPCCGLFIUNXVHARGF3ONELBETM';
+      const amounttoSend = amount * 1000000;
+      const balance = await this.messagebirdService.sendTokens(from, to, mnemonic, amounttoSend);
+      return balance;
+    }
 
   /**
    * @memberof MessagebirdController
@@ -83,7 +109,7 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
-    const address = await this.messagebirdService.getAddress(phone);
+    // const address = await this.messagebirdService.getAddress(phone);
     const canvas = createCanvas(300, 300);
     const context = canvas.getContext('2d');
 

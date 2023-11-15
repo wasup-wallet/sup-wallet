@@ -39,12 +39,14 @@ export class MessagebirdController {
     @Body('phone') phone: string,
     @Body('password') password: string,
   ) {
-    const wallet = await this.messagebirdService.createWallet(phone);
-    return {
-      walletId: wallet.address,
-      msg: `The wallet was created for the phone ${phone} with the password ${password}`,
-      status: 'success',
-    };
+    console.log('=> phone:', phone);
+    await this.messagebirdService.createWallet();
+    // const wallet = await this.messagebirdService.createWallet(phone);
+    // return {
+    //   walletId: wallet.address,
+    //   msg: `The wallet was created for the phone ${phone}.`,
+    //   status: 'success',
+    // };
   }
 
   /**
@@ -61,7 +63,7 @@ export class MessagebirdController {
   ) {
     const balance = await this.messagebirdService.getBalance(phone);
     return {
-      msg: `The wallet balance was requested for the phone ${phone} with the password ${password}`,
+      msg: `The wallet balance was requested for the phone ${phone}.`,
       balance,
       currency: 'USDT',
       red: 'ETH',
@@ -98,7 +100,7 @@ export class MessagebirdController {
     });
 
     return {
-      msg: `The wallet was paid for the phone ${phone} with the password ${password}`,
+      msg: `The wallet was paid for the phone ${phone}.`,
       img: 'https://i.ibb.co/Jv6B9Sk/image.png',
       status: 'success',
     };
@@ -117,7 +119,7 @@ export class MessagebirdController {
     @Body('password') password: string,
   ) {
     return {
-      test: `The Transaction was confirmed for the phone ${phone} with the password ${password}`,
+      test: `The Transaction was confirmed for the phone ${phone}.`,
       hash: '0x1234567890',
       status: 'success',
     };

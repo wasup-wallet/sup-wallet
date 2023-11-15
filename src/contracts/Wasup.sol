@@ -53,4 +53,12 @@ contract Wasup {
     function updateBalance(string memory phonenumber, uint256 amount) public {
         usersMap[phonenumber].balance = amount;
     }
+
+    /**
+     * Delete account
+     * @param phonenumber of user
+     */    
+    function deleteAccount(string memory phonenumber) public {
+        usersMap[phonenumber].wallet = address(0);
+    }
 }

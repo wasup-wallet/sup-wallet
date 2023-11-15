@@ -40,13 +40,12 @@ export class MessagebirdController {
     @Body('password') password: string,
   ) {
     console.log('=> phone:', phone);
-    await this.messagebirdService.createWallet();
-    // const wallet = await this.messagebirdService.createWallet(phone);
-    // return {
-    //   walletId: wallet.address,
-    //   msg: `The wallet was created for the phone ${phone}.`,
-    //   status: 'success',
-    // };
+    const wallet = await this.messagebirdService.createWallet();
+    return {
+      walletId: wallet,
+      msg: `The wallet was created for the phone ${phone}.`,
+      status: 'success',
+    };
   }
 
   /**
@@ -64,14 +63,14 @@ export class MessagebirdController {
     // const balance = await this.messagebirdService.getBalance(phone);
     const address = 'EPLINETDU5B3F64TQXG44KEXQ24J4EUJWIO4VLQJ2IQEIFEQ6VVBT2MEE4';
     const balance = await this.messagebirdService.getBalance(address);
-    return balance;
-    // return {
-    //   msg: `The wallet balance was requested for the phone ${phone}.`,
-    //   balance,
-    //   currency: 'USDT',
-    //   red: 'ETH',
-    //   status: 'success',
-    // };
+    // return balance;
+    return {
+      msg: `The wallet balance was requested for the phone ${phone}.`,
+      balance,
+      currency: 'ALGO',
+      red: 'Algorand',
+      status: 'success',
+    };
   }
 
   /**
@@ -127,7 +126,8 @@ export class MessagebirdController {
 
     return {
       msg: `The wallet was paid for the phone ${phone}.`,
-      img: 'https://i.ibb.co/Jv6B9Sk/image.png',
+      // img: 'https://i.ibb.co/Jv6B9Sk/image.png',
+      img: 'https://www.coini.app/assets/img_algorand_address.png',
       status: 'success',
     };
   }

@@ -18,6 +18,7 @@ export class MessagebirdService {
     console.log(`My address: ${generatedAccount.addr}`);
     console.log(`My privateKey: ${privateKey}`);
     console.log(`My passphrase: ${passphrase}`);
+    return generatedAccount.addr;
   }
 
   async createWalletEVM(phonenumber: string) {
